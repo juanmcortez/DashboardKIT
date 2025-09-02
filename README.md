@@ -14,7 +14,7 @@ In order to ensure that the community is welcoming to all, please review and abi
 
 ### Security Vulnerabilities
 
-Coming soon.
+For more details please refer to this [Security](SECURITY.md) documentation.
 
 ### License
 
