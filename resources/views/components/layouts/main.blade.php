@@ -11,8 +11,12 @@
 
     <!-- Styles / Scripts -->
     @if (file_exists(public_path('build/manifest.json')) || file_exists(public_path('hot')))
-        @vite(['resources/css/base_theme.css', 'resources/js/base_theme.js'])
+        @vite([
+            'resources/css/base_theme.css',
+            'resources/js/base_theme.js'
+        ])
     @endif
+
 </head>
 <body x-data="{ open: true }">
 {{ $slot }}
