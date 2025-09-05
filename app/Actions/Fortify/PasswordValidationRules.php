@@ -1,0 +1,19 @@
+<?php
+
+namespace App\Actions\Fortify;
+
+use Illuminate\Validation\Rules\Password;
+use Illuminate\Contracts\Validation\Rule;
+
+trait PasswordValidationRules
+{
+    /**
+     * Get the validation rules used to validate passwords.
+     *
+     * @return array<int, Rule|array|string>
+     */
+    protected function passwordRules(): array
+    {
+        return ['required', 'string', Password::default(), 'confirmed'];
+    }
+}
