@@ -10,4 +10,10 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\General\DashboardController;
 
-Route::get('/', DashboardController::class)->name('dashboard');
+Route::middleware('auth')->group(function () {
+    // All the routes inside this group require the user to be logged in.
+    //
+    // Dashboard - single action controller
+    Route::get('/', DashboardController::class)->name('dashboard');
+    //
+});
