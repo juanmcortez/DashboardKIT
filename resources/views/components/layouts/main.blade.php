@@ -1,10 +1,21 @@
 <!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}" x-data="{ sidebarOpen: false, sidebarCollapsed: false }">
 <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport" content="maximum-scale=1.0,width=device-width,initial-scale=1.0,user-scalable=0">
+    <meta name="robots" content="noindex">
+    <meta name="referrer" content="origin-when-cross-origin">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>@yield('title', 'Dashboard')</title>
+
+    <link rel="icon" type="image/png" href="{{ asset('images/site/favicon-96x96.png') }}" sizes="96x96"/>
+    <link rel="icon" type="image/svg+xml" href="{{ asset('images/site/favicon.svg') }}"/>
+    <link rel="shortcut icon" href="{{ asset('images/site/favicon.ico') }}"/>
+    <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/site/apple-touch-icon.png') }}"/>
+    <meta name="apple-mobile-web-app-title" content="{{ config('app.name') }}"/>
+    <link rel="manifest" href="{{ asset('images/site/site.webmanifest') }}"/>
 
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.bunny.net">
@@ -16,9 +27,43 @@
             'resources/js/base_theme.js'
         ])
     @endif
-
+    @stack('styles')
 </head>
-<body x-data="{ open: true }">
-{{ $slot }}
+<body @auth class="inside" @endauth>
+@guest
+    <aside>&nbsp;</aside>
+    <main>
+        <!-- Success Messages -->
+        @if (session('status'))
+            <div class="bg-info/50 border border-info rounded-md p-4">
+                <div class="flex">
+                    <div class="flex-shrink-0">
+                        <x-heroicon-o-check-circle class="h-5 w-5 text-success"/>
+                    </div>
+                    <div class="ml-3">
+                        <p class="text-sm text-success">{{ session('status') }}</p>
+                    </div>
+                </div>
+            </div>
+        @endif
+        <!-- Success Messages -->
+        {{ $slot }}
+    </main>
+@endguest
+@auth
+    <aside>
+        <header>
+            <a class="h1" href="{{ route('dashboard') }}">
+                <x-general.logo/>
+                <h1>{{ config('app.name') }}</h1>
+            </a>
+        </header>
+        <nav>{{ __('SIDEBAR NAV') }}</nav>
+        <footer>{{ __('FOOTER') }}</footer>
+    </aside>
+    <main>
+        {{ $slot }}
+    </main>
+@endauth
 </body>
 </html>

@@ -18,6 +18,312 @@
 @theme {
     --font-sans: 'Funnel Sans', ui-sans-serif, system-ui, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji',
     'Segoe UI Symbol', 'Noto Color Emoji';
+
+    --color-primary: #2d3648;
+    --color-secondary: #333f52;
+    --color-accent: #5fb2f3;
+    --color-back: #f1f4f8;
+    --color-dark: #595d6a;
+    --color-light: #fefffe;
+    --color-info: #b5caf8;
+    --color-success: #4d6a14;
+    --color-warning: #f9cf82;
+    --color-danger: #f2575a;
+}
+
+@layer base {
+    body {
+        @apply flex flex-row;
+        @apply justify-center items-center;
+        @apply h-full w-full;
+        @apply m-0 p-0;
+        @apply antialiased font-sans;
+        @apply transition-all duration-200;
+        @apply bg-back;
+    }
+
+    a {
+        @apply font-medium text-accent;
+        @apply hover:text-accent/50;
+        @apply transition-colors;
+        @apply focus:outline-none focus:ring-0 focus:underline;
+    }
+}
+
+@layer components {
+    .inside {
+        @apply flex;
+        @apply justify-start items-end;
+        @apply w-full min-h-screen;
+        @apply text-sm;
+    }
+
+    aside {
+        @apply flex flex-col;
+        @apply justify-center items-center;
+        @apply min-h-screen w-1/2;
+        @apply overflow-hidden;
+        @apply bg-secondary text-neutral-300;
+    }
+
+    .inside aside {
+        @apply fixed;
+        @apply top-0 left-0;
+        @apply m-0 p-0;
+        @apply justify-between;
+        @apply w-1/12;
+    }
+
+    .inside aside header {
+        @apply flex flex-col;
+        @apply justify-center items-center;
+        @apply w-full h-12;
+        @apply m-0 p-0;
+        @apply border-b-2 border-b-primary/75;
+    }
+
+    .inside aside nav {
+        @apply flex-1;
+        @apply justify-start items-start;
+        @apply w-full;
+        @apply m-0 p-0;
+        @apply border-t-2 border-t-dark/25;
+        @apply border-b-2 border-b-primary/75;
+    }
+
+    .inside aside footer {
+        @apply flex flex-col;
+        @apply justify-center items-start;
+        @apply w-full h-10;
+        @apply m-0 p-0;
+        @apply border-t-2 border-t-dark/25;
+    }
+
+    main {
+        @apply flex flex-col;
+        @apply justify-center items-center;
+        @apply p-0 m-0;
+        @apply min-h-screen w-1/2;
+    }
+
+    .inside main {
+        @apply justify-start items-start;
+        @apply w-11/12;
+        @apply p-0 m-0 ml-40;
+        @apply overflow-x-hidden;
+    }
+
+    .inside .h1 .logo,
+    .login-form .logo,
+    .register-form .logo,
+    .forgot-password-form .logo {
+        @apply flex;
+        @apply items-center justify-center;
+        @apply w-20 h-20;
+        @apply mx-auto;
+        @apply rounded-full;
+        @apply bg-accent;
+    }
+
+    .inside .h1 {
+        @apply inline-flex;
+        @apply justify-center items-center;
+        @apply w-full;
+        @apply no-underline;
+    }
+
+    .inside .h1 .logo {
+        @apply mx-0 mr-2;
+        @apply w-8 h-8;
+    }
+
+    .inside .h1 .logo .icon,
+    .login-form .logo .icon,
+    .register-form .logo .icon,
+    .forgot-password-form .logo .icon {
+        @apply w-14 h-14;
+        @apply text-back;
+    }
+
+    .inside .h1 .logo .icon {
+        @apply w-5 h-5;
+    }
+
+    .login-form h2,
+    .register-form h2,
+    .forgot-password-form h2 {
+        @apply mt-4;
+        @apply text-3xl font-bold;
+        @apply text-center text-dark;
+    }
+
+    .login-form h2 + p,
+    .register-form h2 + p,
+    .forgot-password-form h2 + p {
+        @apply mt-2 mb-4;
+        @apply text-sm text-center text-dark;
+    }
+
+    .form-holder {
+        @apply p-6 pt-4;
+        @apply rounded-md;
+        @apply bg-light shadow-xl;
+    }
+
+    .form-holder form {
+        @apply space-y-6;
+    }
+
+    .form-holder form .group label {
+        @apply block;
+        @apply text-sm font-medium text-dark;
+    }
+
+    .form-holder form .group .holder {
+        @apply relative;
+        @apply mt-1;
+    }
+
+    .form-holder form .group .holder input {
+        @apply relative block;
+        @apply w-full;
+        @apply px-3 py-3 pl-10;
+        @apply text-sm text-gray-900;
+        @apply border border-dark/30;
+        @apply rounded-md;
+        @apply appearance-none placeholder-dark/50;
+        @apply focus:outline-none focus:ring-2 focus:ring-accent focus:border-accent focus:z-10;
+    }
+
+    .form-holder form .group .holder .field {
+        @apply flex absolute;
+        @apply inset-y-0 left-0;
+        @apply items-center;
+        @apply pl-3;
+        @apply pointer-events-none;
+    }
+
+    .form-holder form .group .holder .field .icon {
+        @apply w-5 h-5;
+        @apply text-dark/50;
+    }
+
+    .form-holder form .group .holder .show-password {
+        @apply flex absolute;
+        @apply items-center;
+        @apply inset-y-0 right-0;
+        @apply pr-3;
+        @apply hover:cursor-pointer focus:outline-none focus:ring-0 focus:ring-accent focus:border-accent;
+    }
+
+    .form-holder form .remember {
+        @apply flex;
+        @apply items-center justify-between;
+    }
+
+    .form-holder form .remember .holder {
+        @apply flex;
+        @apply items-center;
+    }
+
+    .form-holder form .remember .holder input {
+        @apply h-4 w-4;
+        @apply text-accent;
+        @apply border border-dark/50;
+        @apply rounded-md;
+        @apply active:bg-accent checked:bg-accent;
+        @apply focus:rounded-md focus:outline-none focus:ring-0 focus:ring-accent focus:border-accent;
+    }
+
+    .form-holder form .remember .holder label {
+        @apply block;
+        @apply ml-2;
+        @apply text-xs;
+        @apply text-sm text-dark/50;
+    }
+
+    .form-holder form .remember a {
+        @apply text-sm;
+    }
+
+    button.sign-in {
+        @apply flex relative;
+        @apply w-full;
+        @apply py-3 px-4;
+        @apply justify-center;
+        @apply border border-transparent;
+        @apply text-sm font-medium text-light uppercase;
+        @apply rounded-md;
+        @apply bg-accent;
+        @apply hover:bg-accent focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-accent;
+        @apply transition-colors hover:cursor-pointer;
+    }
+
+    button.sign-in span {
+        @apply flex absolute;
+        @apply items-center;
+        @apply left-0 inset-y-0;
+        @apply pl-3;
+    }
+
+    .form-holder form .group .holder .show-password .icon,
+    button.sign-in span .icon {
+        @apply h-5 w-5;
+        @apply text-dark/50 hover:text-dark/25;
+    }
+
+    button.sign-in span .icon {
+        @apply text-light group-hover:text-light/50;
+    }
+
+    .form-holder form .group p.error {
+        @apply mt-1;
+        @apply text-xs text-danger;
+    }
+
+    /*aside {
+        @apply flex flex-col;
+        @apply min-h-screen w-1/12;
+        @apply m-0 p-0;
+        @apply fixed left-0 top-0;
+        @apply text-sm;
+        @apply bg-secondary text-neutral-300;
+    }
+
+    aside header,
+    aside nav,
+    aside footer {
+        @apply flex flex-row;
+        @apply w-full h-16;
+        @apply m-0 p-0;
+        @apply justify-center items-center;
+        @apply bg-primary;
+    }
+
+    aside header {
+        @apply text-lg;
+        @apply border-b-2 border-secondary;
+    }
+
+    aside nav {
+        @apply flex-1;
+        @apply h-full;
+        @apply justify-start items-start;
+        @apply bg-transparent;
+        @apply border-y-2 border-primary;
+    }
+
+    aside footer {
+        @apply border-t-2 border-secondary;
+        @apply justify-start items-center;
+    }
+
+    main {
+        @apply flex flex-col;
+        @apply m-0 p-0 ml-40;
+        @apply text-sm;
+        @apply min-h-screen w-11/12;
+    }*/
 }
 
 /* @import '/resources/css/theme.css'; */
