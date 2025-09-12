@@ -29,41 +29,20 @@
     @endif
     @stack('styles')
 </head>
-<body @auth class="inside" @endauth>
-@guest
-    <aside>&nbsp;</aside>
-    <main>
-        <!-- Success Messages -->
-        @if (session('status'))
-            <div class="bg-info/50 border border-info rounded-md p-4">
-                <div class="flex">
-                    <div class="flex-shrink-0">
-                        <x-heroicon-o-check-circle class="h-5 w-5 text-success"/>
-                    </div>
-                    <div class="ml-3">
-                        <p class="text-sm text-success">{{ session('status') }}</p>
-                    </div>
-                </div>
-            </div>
-        @endif
-        <!-- Success Messages -->
-        {{ $slot }}
-    </main>
-@endguest
-@auth
-    <aside>
-        <header>
-            <a class="h1" href="{{ route('dashboard') }}">
-                <x-general.logo/>
-                <h1>{{ config('app.name') }}</h1>
-            </a>
-        </header>
-        <nav>{{ __('SIDEBAR NAV') }}</nav>
-        <footer>{{ __('FOOTER') }}</footer>
-    </aside>
-    <main>
-        {{ $slot }}
-    </main>
-@endauth
+<body class="inside">
+<x-layouts.parts.alert/>
+<aside>
+    <header>
+        <a class="h1" href="{{ route('dashboard') }}">
+            <x-general.logo/>
+            <h1>{{ config('app.name') }}</h1>
+        </a>
+    </header>
+    <nav>{{ __('SIDEBAR NAV') }}</nav>
+    <footer>{{ __('FOOTER') }}</footer>
+</aside>
+<main>
+    {{ $slot }}
+</main>
 </body>
 </html>

@@ -1,1 +1,1 @@
-<x-layouts.main>{{ __('Reset password') }}</x-layouts.main>
+<x-layouts.secondary>{{ __('Reset password') }}</x-layouts.secondary>

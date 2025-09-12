@@ -1,4 +1,4 @@
-<x-layouts.main>
+<x-layouts.secondary>
 
     @section('title', __('Register your account | :site', ['site' => config('app.name')]))
     @section('header', __('Register your account'))
@@ -45,4 +45,4 @@
             </form>
         </div>
     </div>
-</x-layouts.main>
+</x-layouts.secondary>
