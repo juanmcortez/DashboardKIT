@@ -1,4 +1,4 @@
-<x-layouts.main>
+<x-layouts.secondary>
 
     @section('title', __('Sign in to your account | :site', ['site' => config('app.name')]))
     @section('header', __('Sign in to your account'))
@@ -49,4 +49,4 @@
         </div>
     </div>
 
-</x-layouts.main>
+</x-layouts.secondary>
